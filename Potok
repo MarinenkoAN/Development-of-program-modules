@@ -1,0 +1,73 @@
+namespace ClassPotok
+{
+        using System;
+public class Robot
+    {
+        private int x;
+        private int y;
+        private string name;
+
+        public Robot(string name)
+        {
+            this.name = name;
+            x = 0;
+            y = 0;
+        }
+
+        public void Move()
+        {
+            Random random = new Random();
+            int direction = random.Next(4);
+
+            switch (direction)
+            {
+                case 0:
+                    // Вперед
+                    y++;
+                    Console.WriteLine("Робот {0} двигается вперёд");
+                    break;
+                case 1:
+                    // Назад
+                    y--;
+                    Console.WriteLine("Робот {0} двигается назад");
+                    break;
+                case 2:
+                    // Поворот налево
+                    x--;
+                    Console.WriteLine("Робот {0} поворачивает налево");
+                    break;
+                case 3:
+                    // Поворот направо
+                    x++;
+                    Console.WriteLine("Робот {0} поворачивает направо");
+                    break;
+            }
+        }
+
+        public void GetInfo()
+        {
+            (string, int, int) coordinates = (name, x, y);
+            Console.WriteLine("Робот {0} находится на координатах ({1}, {2})", coordinates.Item1, coordinates.Item2, coordinates.Item3);
+        }
+    }
+}
+
+
+
+using ClassPotok;
+namespace PotokConsole
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Robot robot = new Robot("Robot1");
+            for(int i = 0; i < 10; i++)
+            {
+                robot.Move();
+                Thread.Sleep(1000);
+                robot.GetInfo();
+            }
+        }
+    }
+}
