@@ -1,0 +1,45 @@
+namespace IskluchenieProgramm
+{
+    using System;
+
+    class Program
+    {
+        static void Main()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Введите первое число: ");
+                    int num1 = int.Parse(Console.ReadLine());
+
+                    Console.Write("Введите второе число: ");
+                    int num2 = int.Parse(Console.ReadLine());
+
+                    if (num2 == 0 || num1 == 0 )
+                    {
+                        throw new DivideByZeroException("Ошибка: деление на ноль!");
+                    }
+
+                    if (num1 % num2 == 0 || num2 % num1 == 0)
+                    {
+                        Console.WriteLine("Числа делятся друг на друга.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Числа не делятся друг на друга.");
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Ошибка: введено некорректное число.");
+                }
+                catch (DivideByZeroException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+    }
+
+}
